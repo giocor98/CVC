@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="it">
+<head>
+    <title>Chi Vuol Essere CHIERICHETTO</title>
+    <script>
+
+    var chosen = 0;
+    var right = 3;
+
+    function ColoraPulsanti(){
+      if(right == 1){
+        document.getElementById('risposta1').style.background='green';
+      }else{
+        document.getElementById('risposta1').style.background='red';
+      }
+      if(right == 2){
+        document.getElementById('risposta2').style.background='green';
+      }else{
+        document.getElementById('risposta2').style.background='red';
+      }
+      if(right == 3){
+        document.getElementById('risposta3').style.background='green';
+      }else{
+        document.getElementById('risposta3').style.background='red';
+      }
+      if(right == 4){
+        document.getElementById('risposta4').style.background='green';
+      }else{
+        document.getElementById('risposta4').style.background='red';
+      }
+      if(chosen==right){
+        document.getElementById("Categoria").innerHTML = "RISPOSTA CORRETTA!!!";
+        document.getElementById("Categoria").style.color = 'green';
+      }else{
+        document.getElementById("Categoria").innerHTML = "risposta errata... ritenta, sarai piu' fortunato...";
+        document.getElementById("Categoria").style.color = 'red';
+      }
+    }
+
+    </script>
+    <style>
+	body {
+		background-color: blue ;
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: grey;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+    position: relative;
+}
+
+img.avatar {
+    width: 20%;
+    border-radius: 20%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+    background-color: #fefefe;
+	   background: orange;
+    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+    position: absolute;
+    right: 25px;
+    top: 0;
+    color: red;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: red;
+    cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+    -webkit-animation: animatezoom 0.6s;
+    animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+    from {-webkit-transform: scale(0)}
+    to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+    from {transform: scale(0)}
+    to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+    span.psw {
+       display: block;
+       float: none;
+    }
+    .cancelbtn {
+       width: 100%;
+    }
+}
+
+.text_in_box {
+	color: red;
+}
+    </style>
+</head>
+<body>
+
+<h1 id="Categoria" align="center" style="color: orange;"></br></br>
+  Categoria
+</h1>
+<h3 id="Domanda" align="center" style="color: green;">
+  Domanda
+</h3>
+<p id="show"></p>
+
+<button class ="risposta" id="risposta1" onclick="document.getElementById('id01').style.display='block';chosen = 1;" style="width:49%;">
+  Risposta 1
+</button>
+<button class ="risposta" id="risposta2" onclick="document.getElementById('id01').style.display='block';chosen = 2;" align = "right" style="width:49%;">
+  Risposta 2
+</button>
+</br>
+<button class ="risposta" id="risposta3" onclick="document.getElementById('id01').style.display='block';chosen = 3;" style="width:49%;">
+  Risposta 3
+</button>
+<button class ="risposta" id="risposta4" onclick="document.getElementById('id01').style.display='block';chosen = 4;" align = "right" style="width:49%;">
+  Risposta 4
+</button>
+
+<div id="id01" class="modal">
+<div class ="modal-content">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+      <img src='https://i.ytimg.com/vi/Ml8SG9JUcW0/maxresdefault.jpg' alt="Avatar" class="avatar">
+    </div>
+
+    <div class="container">
+      <label for="date" ><b class="text_in_box">La accendiamo?</b></label>
+
+      <button type="submit" onclick="document.getElementById('id01').style.display='none';ColoraPulsanti()" style="background-color: green;">La accendiamo</button>
+    </div>
+	</div>
+</div>
+
+
+
+
+</body>
