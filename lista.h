@@ -18,6 +18,7 @@
   void PrintQuest(domanda_t* questionario);
   int LenQuestionario(domanda_t* questionario);
   domanda_t* PopNDomanda(domanda_t** questionario, int n);
+  void FreeDomanda(domanda_t *questionario);
 
 
 #endif

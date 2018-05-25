@@ -3,7 +3,6 @@
 int AddToList( Chierichetto** Lista, int eta, int punti, int stato, char Name[100]){
   Chierichetto * New;
   char * nome;
-  printf("Yeah");
   if(Find(*Lista, -1, -1, -1, Name)!=-1){
     printf("non posso aggiungere il chierichetto, ne esiste gia' un altro con nome uguale...\n");
     return 0;
@@ -167,7 +166,7 @@ int Find (Chierichetto* Pointer, int eta, int punti, int stato, char* nome){
 
 void ClonaLista (const Chierichetto * fonte, Chierichetto** dest){
   while(fonte!=NULL){
-    printf("i %d %d %d %s\n", fonte->eta, fonte->punti, fonte->stato, fonte->nome);
+//    printf("i %d %d %d %s\n", fonte->eta, fonte->punti, fonte->stato, fonte->nome);
     AddToList(dest, fonte->eta, fonte->punti, fonte->stato, fonte->nome);
     fonte = (Chierichetto*)fonte->next;
   }

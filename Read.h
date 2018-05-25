@@ -4,6 +4,12 @@
   #include "include.h"
   #include "lista.h"
 
+
+
+  #define FILEDOMANDASINGOLA "DomandaDaCalcolare"
+  #define ESEMPIOHTML "Domanda.html"
+  #define FINALHTML "Quiz.html"
+  
   #define READFILE "chierichetti.cof"
 
   void ReadList(Chierichetto** Lista);

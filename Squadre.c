@@ -1,11 +1,9 @@
 #include "Squadre.h"
 
 int CreaNSquadre(Chierichetto* Pointer, int n){
-  printf("OK\n");
   Chierichetto* NuovaLista=NULL;
   ClonaLista(Pointer, &NuovaLista);
   int len, sq = 1, i, ret=1;
-  printf("OK\n");
   if(Pointer == NULL){
     printf("Lista vuota\n");
     return 0;
@@ -22,7 +20,6 @@ int CreaNSquadre(Chierichetto* Pointer, int n){
       sq=1;
       ret++;
     }
-    Pointer = (Chierichetto*)Pointer->next;
-  }while(Pointer!=NULL);
+  }while(NuovaLista!=NULL);
   return ret;
 }

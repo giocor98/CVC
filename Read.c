@@ -53,7 +53,6 @@ int ReadDomande(domanda_t** questionario, char* FileDomande){
       risposta[1]= ReadFileUntil(fl, '#', 300);
       risposta[2]=  ReadFileUntil(fl, '#', 300);
       risposta[3]= ReadFileUntil(fl, '\n', 300);
-      printf("Read:'%s', '%s', '%s', '%s', '%s'\n", domanda, risposta[0], risposta[1], risposta[2], risposta[3]);
       AddToQuestionario(questionario, domanda, risposta, punteggio);
     }else if (ch == '%'){
       fscanf(fl, "%d\n", &punteggio);
@@ -64,16 +63,12 @@ int ReadDomande(domanda_t** questionario, char* FileDomande){
 }
 
 int WriteDomande(domanda_t* questionario, char* FileDomande){
-  printf("ok1\n");
   fl = fopen(FileDomande, "w");
   if (fl == NULL){
     printf("Errore, non posso aprire il file...\n");
     return 0;
   }
-  PrintQuest(questionario);
-  printf("OK\n");
   while(questionario!=NULL){
-    printf("OK\n");
     fprintf(fl, "%%%d\n#%s #%s #%s #%s #%s\n", questionario->punteggio, questionario->domanda, questionario->risposta[0], questionario->risposta[1],questionario->risposta[2], questionario->risposta[3]);
     questionario=(domanda_t*)questionario->next;
   }

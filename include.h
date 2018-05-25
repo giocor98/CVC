@@ -6,6 +6,8 @@
   #include <string.h>
   #include <time.h>
 
+  #define TITOLO "Chi vuol essere CHIERICHETTO (II)?"
+
   typedef struct{
     int eta;
     int punti;
