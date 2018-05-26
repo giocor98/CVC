@@ -18,6 +18,14 @@
   }Chierichetto;
 
   typedef struct{
+    char* parola;
+    char** veto;
+    int punti;
+    int n_veto;
+    struct intesa_t* next;
+  }intesa_t;
+
+  typedef struct{
     char* domanda;
     char* risposta[4];
     int punteggio;

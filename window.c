@@ -39,3 +39,26 @@ void initWindows(){
   wmove(logW, 1,1);
   wrefresh(logW);
 }
+
+void PrintMenuW(int high, int len, el_t PMenu[], WINDOW * win){
+  init_pair (RED, COLOR_RED, COLOR_BLACK);
+  init_pair (ORANGE, COLOR_YELLOW, COLOR_BLACK);
+  init_pair (GREEN, COLOR_GREEN, COLOR_BLACK);
+  init_pair (BLUE, COLOR_BLUE, COLOR_BLACK);
+  init_pair (WHITE, COLOR_WHITE, COLOR_BLACK);
+  init_pair (MAGENTA, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair (CYAN, COLOR_CYAN, COLOR_BLACK);
+  werase(win);
+  box(win, 0,0);
+  wmove(win, 1,1);
+  for(int i=0;i<len; i++){
+    wattron(win, COLOR_PAIR(PMenu[i].color));
+    if (i==high)
+      wattron(win, A_REVERSE);
+    mvwprintw(win, i+1, 1, PMenu[i].String);
+    if (i==high)
+      wattroff(win, A_REVERSE);
+    wattroff(win, COLOR_PAIR(PMenu[i].color));
+  }
+  wrefresh(win);
+}

@@ -96,3 +96,83 @@ char* ReadFileUntil(FILE * fl, char term, int max){
     strcpy(ret, tmp);
   return ret;
 }
+
+int ParseIntesa(char* param, char** parola, char*** veto){
+  int i = -1, x =strlen(param)+1;
+  char* tmp = param;
+  char* arr[10];
+  for(int c = 0;c<x; c++){
+    if(param[c]==' '||param[c]==0){
+      param[c]=0;
+      if(i<0){
+        *parola=malloc(strlen(tmp));
+        if(*parola==NULL){
+          return 0;
+        }
+        strcpy(*parola, tmp);
+        tmp = &param[c+1];
+      }else{
+        arr[i]=tmp;
+        tmp = &param[c+1];
+      }
+      i++;
+    }
+  }
+  *veto = malloc(sizeof(char*)*(i));
+  if(*veto==NULL){
+    return 0;
+  }
+  for(int c=0;c<i;c++){
+    (*veto)[c]=malloc(sizeof(char)*(strlen(arr[c])+1));
+    if((*veto)[c]==NULL){
+      return 0;
+    }
+    strcpy((*veto)[c], arr[c]);
+  }
+  return i;
+}
+
+int ReadIntesa(intesa_t** list, char* file){
+  fl = fopen(file, "r");
+  if (fl == NULL){
+    printf("Errore, non posso aprire il file...\n");
+    return 0;
+  }
+  char ch;
+  char* parola, **veto, *tmp;
+  int punteggio = 0, n_veto=0;
+  do{
+    ch = fgetc(fl);
+    if (ch == '#'){
+      tmp = ReadFileUntil(fl, '\n', 500);
+      n_veto = ParseIntesa(tmp, &parola, &veto);
+      AddIntesa(list, parola, veto, punteggio, n_veto);
+    }else if (ch == '%'){
+      fscanf(fl, "%d\n", &punteggio);
+    }
+  }while(ch !=EOF);
+  fclose(fl);
+  return 1;
+}
+
+int WriteIntese(intesa_t* list, char* file){
+  char ch[300];
+  fl = fopen(file, "w");
+  if (fl == NULL){
+    //printf("Errore, non posso aprire il file...\n");
+    return 0;
+  }
+  while(list!=NULL){
+    //strcpy(ch, "%%%d\n#%s");
+    sprintf(ch, "%%%d\n#%s", list->punti, list->parola);
+    for(int i = 0;i<list->n_veto;i++){
+      strcat(ch, " ");
+      strcat(ch, list->veto[i]);
+    }
+    strcat(ch, "\n");
+    fprintf(fl, ch);
+    list = (intesa_t*)list->next;
+  }
+  fclose(fl);
+  return 1;
+}

@@ -184,3 +184,78 @@ char* GetName(Chierichetto* Pointer, int pos){
   strcpy(ret, Pointer->nome);
   return ret;
 }
+
+  void FreeLista(Chierichetto** Lista){
+    while(*Lista != NULL){
+      Remove(0, Lista);
+    }
+  }
+
+
+  void FreeDomande(domanda_t** pointer){
+    while(*pointer != NULL){
+      PopNDomanda(pointer, 0);
+    }
+  }
+
+  Chierichetto * FindN(Chierichetto* pointer, int n){
+    for(int i = 0; i<n && pointer!=NULL; i++){
+      pointer = (Chierichetto*)pointer->next;
+    }
+    return pointer;
+  }
+
+
+int AddIntesa(intesa_t** list, char* parola, char* veto[], int punti, int n_veto){
+  intesa_t* new;
+  new=malloc(sizeof(intesa_t));
+  if (new == NULL){
+    return 0;
+  }
+  new->parola = parola;
+  new->veto = veto;
+  new->punti = punti;
+  new->n_veto = n_veto;
+  new->next = (struct intesa_t*) *list;
+  *list = new;
+  return 1;
+}
+
+int LenIntesa(intesa_t* list){
+  int i=0;
+  while(list!=NULL){
+    i++;
+    list = (intesa_t*)list->next;
+  }
+  return i;
+}
+
+intesa_t* PopNIntesa(intesa_t** list, int n){
+  for(int i=0; i<n&&*list!=NULL; i++){
+    list = (intesa_t**)(&(*list)->next);
+  }
+  if (*list==NULL){
+    return *list;
+  }else{
+    intesa_t* tmp;
+    tmp = *list;
+    *list = (intesa_t*)tmp->next;
+    tmp->next = NULL;
+    return tmp;
+  }
+}
+
+void FreeIntesa(intesa_t* elemento){
+  free(elemento->parola);
+  for(int i=0;i<elemento->n_veto;i++){
+    free(elemento->veto[i]);
+  }
+  free(elemento->veto);
+  free(elemento);
+}
+
+void FreeIntese(intesa_t** list){
+  while(*list !=NULL){
+    FreeIntesa(PopNIntesa(list, 0));
+  }
+}
