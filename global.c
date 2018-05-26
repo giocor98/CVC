@@ -137,6 +137,7 @@ void PopolaMenuChierichetti(Chierichetto* Pointer){
     Pointer = (Chierichetto*)Pointer->next;
   }
   LenMenu[2]=i;
+  high[2]=0;
 }
 
 void vuota (char* str, int info){
@@ -224,6 +225,7 @@ void Quiz (char* str, int info){
     i++;
   }
   LenMenu[1]=i;
+  high[1]=0;
 }
 
 void PopolaMenuDomande(domanda_t* Pointer){
@@ -237,6 +239,7 @@ void PopolaMenuDomande(domanda_t* Pointer){
     Pointer = (domanda_t*)Pointer->next;
   }
   LenMenu[2]=i;
+  high[2]=0;
 }
 
 void FileQuiz (char* str, int info){
@@ -342,6 +345,7 @@ void Intesa (char* str, int info){
     i++;
   }
   LenMenu[1]=i;
+  high[1]=0;
 }
 
 void PopolaMenuIntese(intesa_t* Pointer){
@@ -355,6 +359,7 @@ void PopolaMenuIntese(intesa_t* Pointer){
     Pointer = (intesa_t*)Pointer->next;
   }
   LenMenu[2]=i;
+  high[2]=0;
 }
 
 void FileIntesa (char* str, int info){
@@ -427,6 +432,7 @@ void Mimo (char* str, int info){
     i++;
   }
   LenMenu[1]=i;
+  high[1]=0;
 }
 
 void PopolaMenuMimo(mimo_t* Pointer){
@@ -440,6 +446,7 @@ void PopolaMenuMimo(mimo_t* Pointer){
     Pointer = (mimo_t*)Pointer->next;
   }
   LenMenu[2]=i;
+  high[2]=0;
 }
 
 void FileMimo (char* str, int info){

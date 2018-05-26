@@ -45,5 +45,6 @@
 
   extern WINDOW * infoW, * menuW, * logW, * statW;
   extern el_t* MenuArr[3];
+  extern int high[3];
 
 #endif
