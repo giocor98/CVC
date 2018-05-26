@@ -3,7 +3,7 @@
 #include "lista.h"
 
 
-#define LENHTML 204
+#define LENHTML 210
 
 FILE * fh, * fd;
 
@@ -45,17 +45,17 @@ int main(){
     i++;
     if(i==8){
       sprintf(riga, "\t\tvar right = %d;\n", Right);
-    }else if(i==164){
+    }else if(i==170){
       sprintf(riga, "%s\n", TITOLO);
-    }else if(i==167){
+    }else if(i==173){
       sprintf(riga, "%s\n", List->domanda);
-    }else if(i==172){
+    }else if(i==178){
       sprintf(riga, "%s\n", List->risposta[0]);
-    }else if(i==175){
+    }else if(i==181){
       sprintf(riga, "%s\n", List->risposta[1]);
-    }else if(i==179){
+    }else if(i==185){
       sprintf(riga, "%s\n", List->risposta[2]);
-    }else if(i==182){
+    }else if(i==188){
       sprintf(riga, "%s\n", List->risposta[3]);
     }
     fprintf(fd, "%s", riga);

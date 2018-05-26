@@ -37,6 +37,12 @@
       }
     }
 
+    function refresh (timeoutPeriod){
+  		refresh = setTimeout(function(){window.location.reload(true);},timeoutPeriod);
+  	}
+
+    function refresh1 (timeoutPeriod){ refresh1 = setTimeout(function(){window.location.reload(true);},timeoutPeriod);	}
+
     </script>
     <style>
 	body {
@@ -158,7 +164,7 @@ span.psw {
 }
     </style>
 </head>
-<body>
+<body onload="refresh(25000);">
 
 <h1 id="Categoria" align="center" style="color: orange;"></br></br>
   Categoria
@@ -192,7 +198,7 @@ span.psw {
     <div class="container">
       <label for="date" ><b class="text_in_box">La accendiamo?</b></label>
 
-      <button type="submit" onclick="document.getElementById('id01').style.display='none';ColoraPulsanti()" style="background-color: green;">La accendiamo</button>
+      <button type="submit" onclick="refresh1(3000);document.getElementById('id01').style.display='none';ColoraPulsanti();" style="background-color: green;">La accendiamo</button>
     </div>
 	</div>
 </div>
