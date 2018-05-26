@@ -8,12 +8,16 @@
 
   #define FILEDOMANDASINGOLA "DomandaDaCalcolare"
   #define FILEINTESASINGOLA "IntesaDaCalcolare"
+  #define FILEMIMOSINGOLO "MimoDaCalcolare"
 
   #define ESEMPIOHTML "Domanda.html"
   #define FINALHTML "Quiz.html"
 
   #define ESEMPIOHTMLINTESA "Intesa.html"
   #define FINALHTMLINTESA "IntesaVincente.html"
+
+  #define ESEMPIOHTMLMIMO "Mimo.html"
+  #define FINALHTMLMIMO "Mima.html"
 
   #define READFILE "chierichetti.cof"
 
@@ -26,5 +30,8 @@
 
   int ReadIntesa(intesa_t** list, char* file);
   int WriteIntese(intesa_t* list, char* file);
+
+  int ReadMimo(mimo_t** list, char* file);
+  int WriteMimo(mimo_t* list, char* file);
 
 #endif

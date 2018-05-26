@@ -1,4 +1,4 @@
-program:test.c include.h Read.o lista.o Squadre.o MakeHtmlDomanda ChooseRandomDomanda GenerateSquadre Console DaiPunti ChooseDomanda ChooseIntesa ChooseRandomIntesa MakeHtmlIntesa
+program:test.c include.h Read.o lista.o Squadre.o MakeHtmlDomanda ChooseRandomDomanda GenerateSquadre Console DaiPunti ChooseDomanda ChooseIntesa ChooseRandomIntesa MakeHtmlIntesa ChooseMimo ChooseRandomMimo MakeHtmlMimo
 		gcc -o program test.c Read.o lista.o Squadre.o
 		./initialiser.sh
 
@@ -17,6 +17,9 @@ MakeHtmlDomanda: MakeDomandaHtml.c Read.o lista.o include.h
 MakeHtmlIntesa: MakeHtmlIntesa.c Read.o lista.o include.h
 		gcc -o MakeHtmlIntesa MakeHtmlIntesa.c Read.o lista.o
 
+MakeHtmlMimo: MakeHtmlMimo.c Read.o lista.o include.h
+		gcc -o MakeHtmlMimo MakeHtmlMimo.c Read.o lista.o
+
 ChooseRandomDomanda: ChooseRandomDomanda.c Read.o lista.o include.h
 		gcc -o ChooseRandomDomanda ChooseRandomDomanda.c Read.o lista.o
 
@@ -28,6 +31,12 @@ ChooseIntesa: ChooseIntesa.c Read.o lista.o include.h
 
 ChooseRandomIntesa: ChooseRandomIntesa.c include.h ChooseIntesa
 		gcc -o ChooseRandomIntesa ChooseRandomIntesa.c
+
+ChooseMimo: ChooseMimo.c Read.o lista.o include.h
+		gcc -o ChooseMimo ChooseMimo.c Read.o lista.o
+
+ChooseRandomMimo: ChooseMimo ChooseRandomMimo.c include.h
+		gcc -o ChooseRandomMimo ChooseRandomMimo.c
 
 GenerateSquadre: GenerateSquadre.c Read.o lista.o Squadre.o include.h
 		gcc -o GenerateSquadre GenerateSquadre.c Read.o lista.o Squadre.o

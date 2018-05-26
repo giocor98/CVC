@@ -3,8 +3,9 @@
 #include "lista.h"
 
 Chierichetto * Lista;
-domanda_t* domande;
-intesa_t* list;
+domanda_t* domande = NULL;
+intesa_t* list = NULL;
+mimo_t* lista_mimo = NULL;
 
 char CurrentFile[100]="";
 
@@ -52,10 +53,7 @@ el_t InfoMenu[LENMENU] = {
 };
 
 
-void Mimo (char* str, int info){}
 void Exit (char* str, int info){}
-
-
 
 
 void init (char* Str, int info){
@@ -157,10 +155,10 @@ void CreaSquadre (char* str, int info){
   wbkgd(AddW, COLOR_PAIR(80));
   box(AddW, 0, 0);
   mvwprintw(AddW, 0, 35-6, "Crea Squadre");
-  mvwprintw(AddW, 1, 1, "Quante squadre vuoi creare? (0=non crearne)");
+  mvwprintw(AddW, 1, 1, "Quante squadre vuoi creare? (-1=non crearne)");
   wscanw(AddW, "%d\n", &n);
   mvwprintw(AddW, 2, 1, "numero squadre:%d", n);
-  if(n!=0){
+  if(n!=-1){
     mvwprintw(AddW, 6, 3, "Creo le squadre");
     wrefresh(AddW);
     ch = wgetch(AddW);
@@ -408,4 +406,90 @@ void SelectIntesa (char* str, int info){
   wrefresh(AddW);
   delwin(AddW);
   //PopolaMenuIntese(list);
+}
+
+
+void Mimo (char* str, int info){
+  FILE * fl;
+  char ch[100];
+  int i=0;
+  fl = fopen("listaMimi.auto", "r");
+  if(fl == NULL){
+    FasiDiGioco[info].color = RED;
+    return;
+  }
+  FasiDiGioco[info].color = ORANGE;
+  while(fscanf(fl, "%s\n", ch)!=EOF){
+    strcpy(Menu[i].String, ch);
+    Menu[i].color = ORANGE;
+    Menu[i].info = 0;
+    Menu[i].func = FileMimo;
+    i++;
+  }
+  LenMenu[1]=i;
+}
+
+void PopolaMenuMimo(mimo_t* Pointer){
+  int i = 0;
+  while(Pointer!=NULL){
+    strcpy(InfoMenu[i].String, Pointer->Mimo);
+    InfoMenu[i].color = RED;
+    InfoMenu[i].info = 0;
+    InfoMenu[i].func = SelectMimo;
+    i++;
+    Pointer = (mimo_t*)Pointer->next;
+  }
+  LenMenu[2]=i;
+}
+
+void FileMimo (char* str, int info){
+  WINDOW * AddW;
+  char cmd[100];
+  int ch;
+  int i=0;
+  init_pair (80, COLOR_BLUE, COLOR_YELLOW);
+  init_pair (41, COLOR_YELLOW, COLOR_BLACK);
+  AddW = newwin(5, 50, (LINES/2)-3, (COLS/2)-25);
+  wmove(AddW, 0,0);
+  wbkgd(AddW, COLOR_PAIR(80));
+  box(AddW, 0, 0);
+  mvwprintw(AddW, 0, 25-4, "Mimo casuale?");
+  mvwprintw(AddW, 1, 1, "Estraggo il mimo casualmente?[y/n]");
+  wrefresh(AddW);
+  ch = wgetch(AddW);
+  if((char)ch=='y'&&(char)ch!='Y'){
+    sprintf(cmd, "./ChooseRandomMimo %s\n./MakeHtmlMimo\n", str);
+    system(cmd);
+  }
+  wrefresh(AddW);
+  delwin(AddW);
+  FreeMimi(&lista_mimo);
+  ReadMimo(&lista_mimo, str);
+  PopolaMenuMimo(lista_mimo);
+  strcpy(CurrentFile, str);
+}
+
+void SelectMimo (char* str, int info){
+  WINDOW * AddW;
+  char cmd[100];
+  int ch;
+  int i=0;
+  init_pair (80, COLOR_BLUE, COLOR_YELLOW);
+  init_pair (41, COLOR_YELLOW, COLOR_BLACK);
+  AddW = newwin(5, 50, (LINES/2)-3, (COLS/2)-25);
+  wmove(AddW, 0,0);
+  wbkgd(AddW, COLOR_PAIR(80));
+  box(AddW, 0, 0);
+  mvwprintw(AddW, 0, 25-10, "Scelgo questo mimo?");
+  mvwprintw(AddW, 1, 1, "scelgo questo mimo?[y/n]");
+  wrefresh(AddW);
+  ch = wgetch(AddW);
+  if((char)ch=='y'&&(char)ch!='Y'){
+    sprintf(cmd, "./ChooseMimo %s %d\n./MakeHtmlMimo\n", CurrentFile, info);
+    system(cmd);
+  }
+  wrefresh(AddW);
+  delwin(AddW);FreeMimi(&lista_mimo);
+  ReadMimo(&lista_mimo, CurrentFile);
+  PopolaMenuMimo(lista_mimo);
 }

@@ -14,6 +14,13 @@ int main(int argc, char *argv[]){
   }
   n = atoi(argv[1]);
   ReadList(&Lista);
-  CreaNSquadre(Lista, n);
+  if (n==0){
+    for(int i = 0; i<Len(Lista); i++){
+      SetStatus(Lista, i, 0);
+    }
+
+  }else{
+    CreaNSquadre(Lista, n);
+  }
   WriteList(Lista);
 }

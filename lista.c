@@ -259,3 +259,62 @@ void FreeIntese(intesa_t** list){
     FreeIntesa(PopNIntesa(list, 0));
   }
 }
+
+int AddMimo(mimo_t** list, char* Mimo, int punti){
+  mimo_t* new;
+  new = malloc(sizeof(mimo_t));
+  if(new == NULL){
+    return 0;
+  }
+  new->Mimo = malloc(sizeof(char) * (strlen(Mimo) + 1));
+  if(new->Mimo == NULL)
+    return 0;
+  strcpy(new->Mimo, Mimo);
+  new->punti = punti;
+  new->next = (struct mimo_t*) *list;
+  *list = new;
+  return 1;
+}
+
+int LenMimo(mimo_t* list){
+  int len=0;
+  while (list !=NULL){
+    len++;
+    list = (mimo_t*) list->next;
+  }
+  return len;
+}
+
+mimo_t* PopNMimo(mimo_t** list, int n){
+  for(int i = 0; i<n && *list!=NULL; i++){
+    list = (mimo_t**)&((*list)->next);
+  }
+  if(*list == NULL){
+    return *list;
+  }
+  mimo_t* tmp;
+  tmp = *list;
+  *list = (mimo_t*)tmp->next;
+  tmp->next = NULL;
+  return tmp;
+}
+
+void FreeMimo(mimo_t *elemento){
+  free(elemento->Mimo);
+  free(elemento);
+}
+
+void FreeMimi(mimo_t** list){
+  while (*list!=NULL){
+    FreeMimo(PopNMimo(list, 0));
+  }
+}
+
+int SetStatoSeStatus(Chierichetto* Pointer, int status, int NewStato){
+  while(Pointer!=NULL){
+    if(Pointer->stato == status){
+      Pointer->stato = NewStato;
+    }
+    Pointer = (Chierichetto*) Pointer->next;
+  }
+}

@@ -32,5 +32,12 @@
     struct domanda_t* next;
   }domanda_t;
 
+  typedef struct{
+    char* Mimo;
+    int punti;
+    struct mimo_t* next;
+  }mimo_t;
+
   extern Chierichetto * Lista;
+  extern mimo_t* lista_mimo;
 #endif

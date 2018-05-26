@@ -176,3 +176,39 @@ int WriteIntese(intesa_t* list, char* file){
   fclose(fl);
   return 1;
 }
+
+int ReadMimo(mimo_t** list, char* file){
+  char *Mimo, ch;
+  fl = fopen(file, "r");
+  if (fl == NULL){
+    printf("Errore, non posso aprire il file...\n");
+    return 0;
+  }
+  int punteggio = 0;
+  do{
+    ch = fgetc(fl);
+    if (ch == '#'){
+      Mimo = ReadFileUntil(fl, '\n', 500);
+      AddMimo(list, Mimo, punteggio);
+      free(Mimo);
+    }else if (ch == '%'){
+      fscanf(fl, "%d\n", &punteggio);
+    }
+  }while(ch !=EOF);
+  fclose(fl);
+  return 1;
+}
+
+int WriteMimo(mimo_t* list, char* file){
+  fl = fopen(file, "w");
+  if (fl == NULL){
+    printf("Errore, non posso aprire il file...\n");
+    return 0;
+  }
+  while(list!=NULL){
+    fprintf(fl, "%%%d\n#%s\n", list->punti, list->Mimo);
+    list = (mimo_t*)list->next;
+  }
+  fclose(fl);
+  return 1;
+}

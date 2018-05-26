@@ -12,6 +12,7 @@
   int SetStatus(Chierichetto* Pointer, int pos, int status);
   int SetPunteggio(Chierichetto* Pointer, int pos, int punti);
   int SetPuntiSeStatus(Chierichetto* Pointer, int status, int punti);
+  int SetStatoSeStatus(Chierichetto* Pointer, int status, int NewStato);
   void ClonaLista (const Chierichetto * fonte, Chierichetto** dest);
   char* GetName(Chierichetto* Pointer, int pos);
   void FreeLista(Chierichetto** Lista);
@@ -29,5 +30,11 @@
   intesa_t* PopNIntesa(intesa_t** list, int n);
   void FreeIntesa(intesa_t *elemeto);
   void FreeIntese(intesa_t** list);
+
+  int AddMimo(mimo_t** list, char* Mimo, int punti);
+  int LenMimo(mimo_t* list);
+  mimo_t* PopNMimo(mimo_t** list, int n);
+  void FreeMimo(mimo_t *elemeto);
+  void FreeMimi(mimo_t** list);
 
 #endif

@@ -37,7 +37,9 @@
   void AddChierichetto (char* str, int info);
   void SelectChierichetto (char* str, int info);
   void FileIntesa (char* str, int info);
+  void FileMimo (char* str, int info);
   void SelectIntesa (char* str, int info);
+  void SelectMimo (char* str, int info);
 
   void vuota (char* str, int info);
 
