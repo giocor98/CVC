@@ -11,13 +11,13 @@
   #define FILEMIMOSINGOLO "MimoDaCalcolare"
 
   #define ESEMPIOHTML "Domanda.html"
-  #define FINALHTML "Quiz.html"
+  #define FINALHTML "/srv/http/Chierichetti/index.html"
 
   #define ESEMPIOHTMLINTESA "Intesa.html"
-  #define FINALHTMLINTESA "IntesaVincente.html"
+  #define FINALHTMLINTESA "/srv/http/Chierichetti/index.html"
 
   #define ESEMPIOHTMLMIMO "Mimo.html"
-  #define FINALHTMLMIMO "Mima.html"
+  #define FINALHTMLMIMO "/srv/http/Chierichetti/index.html"
 
   #define READFILE "chierichetti.cof"
 
